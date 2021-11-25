@@ -1,0 +1,31 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    /* background-color: #0c003244; */
+    color: #ffffff;
+    position: relative;
+  
+  }
+  
+  .nav-links {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+
+  }
+.nav-links > li:hover {
+  color: rgb(127, 255, 212);
+}
+  img {
+    position: relative
+  }
+  .nav-links  li{
+      padding-top: 3vh;
+      padding-bottom: 1vh;
+      align-self: center;
+      transition: ease 0.5s;
+  }
