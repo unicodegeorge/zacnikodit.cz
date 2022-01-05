@@ -1,0 +1,68 @@
+.dope {
+    position: absolute;
+    left: 47%;
+    top: 50%;
+}
+
+.lessons {
+    border-bottom: 14px solid rgb(246, 247, 189) !important;
+    border-left: 6px solid rgb(47, 230, 93);
+    border-right: 6px solid rgb(47, 230, 93);
+    border-bottom-left-radius: 10%;
+    border-top: 6px solid white;
+    border-bottom-right-radius: 10%;
+    background-color: white;
+    height: 30vh;
+
+}
+::-webkit-scrollbar {
+    width: 6px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    display: none;
+
+  }
+
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #000000;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border-bottom-right-radius: 300%;
+    height: 50px;
+    display: none;
+  
+
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(255, 255, 255);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border-bottom-right-radius: 54%;
+    
+  }
+.title {
+    color: rgb(255, 255, 255);
+    position: relative;
+    top: 10px;
+}
+
+#auth-form::after {
+    position: absolute;
+    content: "ZACNIKODIT.CZ";
+    bottom: 0;
+    font-weight: bold;
+    right: 10px;
+    bottom: 10px;
+    color: white;
+}
+.card {
+    margin-right: 15px;
+    border: 2px solid white;
+}
+
+.demo-simple-select-label {
+    color: white;
+}
+

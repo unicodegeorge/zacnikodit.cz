@@ -1,37 +1,15 @@
 import './App.css';
-import { signUp } from '../firebase/firebase-config';
-import { useRef } from 'react';
+import AuthForms from './components/AuthForms';
+import { auth } from '../firebase/firebase-config';
+import {useLocation} from 'react-router-dom';
+
 
 
 
 function Auth() {
-    const emailRef = useRef();
-    const passwordRef = useRef();
-
-
-    async function handleSignUp() {
-        try {
-            await signUp(emailRef.current.value, passwordRef.current.value).then(() => {
-                console.log("worked");
-            })
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    return (
-        <div id="authentication">
-            <div id="register">
-                <input type="text" ref={emailRef} />
-                <input type="password" ref={passwordRef} />
-                <input type="button" value="signUp" onClick={handleSignUp} />
-            </div>
-
-            <div id="login">
-
-            </div>
-        </div>
-    );
+    const location = useLocation();
+    console.log(location.pathname)
+    return <AuthForms type={location.pathname.slice(1)} />
 }
 
 export default Auth;

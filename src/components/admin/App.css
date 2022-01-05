@@ -1,0 +1,106 @@
+#create-lesson input[type="text"]{
+    height: 20px;
+    border: 3px solid rgb(255, 255, 255);
+    color: white;
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+.input > #file-upload-button {
+    height: 100px;
+    width: 1010%;
+
+}
+#create-lesson {
+    height: 600px;
+}
+
+
+#create-lesson {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+#create-lesson {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+
+    top: 0vh;
+    position: relative;
+    justify-content: space-between;
+    height: 25vw;
+    background-color: white;
+    border-bottom: 3px solid white;
+    border-left: 3px solid white;
+    border-right: 3px solid white; 
+    padding: 40px;
+    color: rgb(47, 230, 93);
+    padding-top: 10px;
+    background-color: rgba(0, 0, 0, 0.568);
+    margin-top: 10%;
+    border: 3px solid rgb(47, 230, 93);
+    border-bottom-left-radius: 10%;
+}
+#create-lesson > * {
+    color: rgb(13, 61, 25);
+    
+}
+
+#create-lesson::before {
+    position: absolute;
+    content: "UNICODE - 2022/2023";
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-right: 3px solid white;
+    border-left: 3px solid white;
+
+    
+    width: 99.89%;
+    top: -38px;
+    
+    left: -0.41%;
+    background-color: rgb(255, 255, 255);
+}
+#create-lesson textarea {
+    border: 3px solid rgb(47, 230, 93);
+    color: white;
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    font-weight: bolder;
+    height: 400px;
+}
+
+
+
+#create-lesson input[type="text"]:focus ,#create-lesson input[type="password"]:focus, textarea{
+    outline: none;
+}
+
+form-btn:active {
+    background: rgb(0, 0, 0);
+    color: white;
+}
+
+.form-btn {
+    background-color: rgb(255, 255, 255);
+    border: 3px solid rgb(47, 230, 93);
+    color: rgb(0, 0, 0);
+    height: 30px;
+    transition: 0.5s ease;
+    font-weight: bold;
+    font-family: "Fira Code";
+    cursor: pointer;
+    color: rgb(47, 230, 93);
+}
+
+.form-btn:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+

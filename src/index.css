@@ -13,6 +13,8 @@ code {
 }
 
 html, body {
-  background: url(https://wallpaperaccess.com/full/1268174.jpg);
-  color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('https://wallpaperaccess.com/full/1193603.jpg');
+  height: 100vh;
 }

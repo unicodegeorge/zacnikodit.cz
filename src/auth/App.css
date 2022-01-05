@@ -1,0 +1,90 @@
+#auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin: 0 auto;
+    position: relative;
+    justify-content: space-between;
+    height: 20vw;
+    background-color: white;
+    border-bottom: 3px solid white;
+    border-left: 3px solid white;
+    border-right: 3px solid white; 
+    padding: 40px;
+    padding-top: 10px;
+    background-image: url('https://rendering.ru/media/catalog/product/cache/5eba369889d231319121094e533c3c45/i/t/itrees-palms-03.jpg'); 
+    margin-top: 10%;
+    border-bottom-left-radius: 10%;
+    box-shadow: 0px -10px 190px 5px rgba(94, 243, 8, 0.5);
+}
+
+#auth-form::before {
+    position: absolute;
+    content: "UNICODE - 2022/2023";
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-right: 3px solid white;
+    border-left: 3px solid white;
+
+
+    width: 100%;
+    top: -36px;
+    
+    left: -0.7%;
+    background-color: white;
+}
+
+.title {
+    color: rgb(255, 255, 255);
+    position: relative;
+    top: 10px;
+}
+
+#auth-form::after {
+    position: absolute;
+    content: "ZACNIKODIT.CZ";
+    bottom: 0;
+    font-weight: bold;
+    right: 10px;
+    bottom: 10px;
+    color: white;
+}
+
+#auth-form > input[type="text"], #auth-form > input[type="password"]{
+    height: 20px;
+    border: 3px solid rgb(255, 255, 255);
+    color: white;
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+#auth-form input[type="text"]:focus ,#auth-form input[type="password"]:focus{
+    outline: none;
+}
+
+
+.form-btn:active {
+    background: rgb(0, 0, 0);
+    color: white;
+}
+
+.form-btn {
+    background-color: rgb(255, 255, 255);
+    border: 3px solid rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    height: 30px;
+    transition: 0.5s ease;
+    font-weight: bold;
+    font-family: "Fira Code";
+    cursor: pointer;
+}
+
+.form-btn:hover {
+    background-color: rgb(139, 139, 139);
+    color: white;
+}
+
+
