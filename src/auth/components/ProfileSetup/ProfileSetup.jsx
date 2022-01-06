@@ -39,11 +39,16 @@ function ProfileSetup(props) {
       friends: [],
       profilePicture: "profile-picture",
       setupDone: true,
+    }).catch(function(err) {
+      alert(err);
     });
 
-    uploadProfileFile(profilePic);
+
+
+    await uploadProfileFile(profilePic);
+    
+    props.setProfileSetupDone(true);
     setOpen(false);
-    props.handler(true);
   };
 
   const handleFileUpload = (event) => {

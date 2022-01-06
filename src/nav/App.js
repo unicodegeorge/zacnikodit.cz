@@ -8,6 +8,8 @@ import { SchoolTwoTone } from '@mui/icons-material';
 import { PersonSharp } from '@mui/icons-material';
 import { auth } from '../firebase/firebase-config';
 import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 function Nav() {
   const navigate = useNavigate();
   const styleIcon = {
@@ -16,17 +18,21 @@ function Nav() {
     fontWeight: "bolder",
   };
 
+  const [user] = useAuthState(auth);
+
+
+
 
   return (
     <nav>
       <img src={logo} className="logo" width="100" alt="logos"  style={{cursor: 'pointer'}} onClick={()=> navigate("")}/>
       <ul className="nav-links">
 
-        {auth.currentUser !== null && <li onClick={() => navigate('/lessons')}>Lessons <SchoolTwoTone sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
-        {auth.currentUser === null && <li onClick={() => navigate('/login')}>Login <LoginRounded sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
-        {auth.currentUser === null && <li onClick={() => navigate('/signup')}>Register <BookTwoTone sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
-        {auth.currentUser !== null && <li onClick={() => navigate('/profile')}>Profile <PersonSharp sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
-        {auth.currentUser !== null && <li onClick={() => signOut(auth)}>Sign Out<LoginRounded sx={{ width: 20, position: "relative", top: -1, left: 15 }}  /></li>}
+        {user && <li onClick={() => navigate('/lessons')}>Lessons <SchoolTwoTone sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
+        {!user && <li onClick={() => navigate('/login')}>Login <LoginRounded sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
+        {!user && <li onClick={() => navigate('/signup')}>Register <BookTwoTone sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
+        {user && <li onClick={() => navigate('/profile')}>Profile <PersonSharp sx={{ width: 20, position: "relative", top: -1, left: 15 }} /></li>}
+        {user !== null && <li onClick={() => signOut(auth) && navigate("/login")}>Sign Out<LoginRounded sx={{ width: 20, position: "relative", top: -1, left: 15 }}  /></li>}
       </ul>
     </nav>
   );

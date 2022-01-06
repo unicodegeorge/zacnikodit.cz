@@ -48,7 +48,7 @@ export function uploadLessonFile(file) {
   })  
 }
 
-export function uploadProfileFile(file) {
+export async function uploadProfileFile(file) {
   const storageRef = ref(storage, "users/"+auth.currentUser.uid + "/profile/" + "profile-picture");
   uploadBytes(storageRef, file).then((snapshot) => {
     console.log("File uploaded");
@@ -90,9 +90,10 @@ export async function isProfileSetupDone(uid) {
     ) {
       return false;
     }
-  } else {
-    return true;
-  }
+    else {
+      return true;
+    }
+  } 
 }
 
 
