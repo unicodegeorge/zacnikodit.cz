@@ -23,6 +23,11 @@ function ProfileBoard() {
   const [profilePic, setProfilePic] = useState();
   const [userData, setUserData] = useState();
   const [user, loading, error] = useAuthState(auth);
+
+  const handleEditProfile = () => {
+    alert("To be continued")
+  }
+
   useEffect(() => {
     if (user) {
         const asyncGetData = async () => {
@@ -34,34 +39,35 @@ function ProfileBoard() {
         .catch((error) => {
           alert(error);
         })
-      };
+      }; 
 
       
   }, [loading]);
 
   return (
     <div>
-      <Card sx={{ maxWidth: 450 }}>
+      <Card sx={{ maxWidth: 450, margin: "0 auto", marginTop: "50px"}}>
         <CardMedia
           component="img"
           height="250"
           image={
             userData
-              ? userData.profilePictureRef 
+              ? user?.photoURL 
               : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStek1E2cJ7vDNe5-8BCmh8HmYuyjkPEnHgPw&usqp=CAU"
           }
           alt="green iguana"
+          sx={{borderBottom: "10px solid #eb4034"}}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" color={"red"}>
-            {userData?.displayName}
+            {user?.displayName}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {userData?.aboutme}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" variant="text" endIcon={<EditSharp />}>
+          <Button size="small" variant="text" onClick={handleEditProfile} endIcon={<EditSharp />}>
             Edit Profile
           </Button>
         </CardActions>

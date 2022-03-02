@@ -15,14 +15,14 @@ import {
   app,
   auth,
   database,
+  getProfileUrl,
   isProfileSetupDone,
   uploadProfileFile,
 } from "../../../firebase/firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AppRegistrationTwoTone, PhotoCamera } from "@mui/icons-material";
-import { getAuth } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
 
 function ProfileSetup(props) {
   const [open, setOpen] = useState(false);
@@ -33,20 +33,22 @@ function ProfileSetup(props) {
   const navigate = useNavigate();
   const handleFinishSetup = async () => {
     await setDoc(doc(database, "users", auth.currentUser.uid), {
-      displayName: displayNameRef.current.value,
       aboutme: aboutMeRef.current.value,
       uid: auth.currentUser.uid,
       friends: [],
-      profilePicture: "profile-picture",
       setupDone: true,
-    }).catch(function(err) {
+    }).catch(function (err) {
       alert(err);
     });
 
-
-
     await uploadProfileFile(profilePic);
+
     
+
+    updateProfile(auth.currentUser, {
+      displayName: displayNameRef.current.value,
+    });
+
     props.setProfileSetupDone(true);
     setOpen(false);
   };
@@ -57,21 +59,15 @@ function ProfileSetup(props) {
 
   const [user, loading, error] = useAuthState(auth);
 
-
   useEffect(() => {
-
     if (user) {
-      if(isProfileSetupDone(user.uid)) {
+      if (isProfileSetupDone(user.uid)) {
         setOpen(true);
       } else {
         setOpen(false);
       }
     }
-
-  }
-
-
-    , [loading]);
+  }, [loading]);
 
   const style = {
     width: 500,
@@ -87,92 +83,97 @@ function ProfileSetup(props) {
   };
 
   return (
-
-    user !== null && <>
-      <Modal
-        open={open}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography
-            gutterBottom={true}
-            id="modal-modal-title"
-            variant="h4"
-            component="h2"
-          >
-            SETUP YOUR PROFILE
-          </Typography>
-          <form>
-            <FormControl
-              label="wow"
-              variant="outlined"
-              margin="dense"
-              fullWidth={true}
+    user !== null && (
+      <>
+        <Modal
+          open={open}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography
+              gutterBottom={true}
+              id="modal-modal-title"
+              variant="h4"
+              component="h2"
             >
-              <InputLabel htmlFor="displayName" color="success">
-                {" "}
-                DISPLAY NAME{" "}
-              </InputLabel>
-              <Input inputRef={displayNameRef} aria-describedby="displayName" />
-            </FormControl>
-
-            <FormControl
-              label="img"
-              variant="outlined"
-              margin="normal"
-              fullWidth={true}
-            >
-              <label htmlFor="icon-button-file">
-                <Input
-                  accept="image/*"
-                  id="icon-button-file"
-                  aria-describedby="profilePicture"
-                  type="file"
-                  onChange={handleFileUpload}
-                />
-                <IconButton
-                  color="success"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <PhotoCamera />
-                </IconButton>
-              </label>
-            </FormControl>
-            <FormControl
-              label="wow"
-              variant="outlined"
-              margin="dense"
-              fullWidth={true}
-            >
-              <TextField
-                id="aboutMe"
-                multiline={true}
-                rows="5"
-                sx={{ color: "white" }}
-                inputRef={aboutMeRef}
-                InputLabelProps={{ "aria-describedBy": "aboutMe" }}
-              />
-            </FormControl>
-
-            <FormControl
-              label="wow"
-              variant="outlined"
-              margin="normal"
-              fullWidth={true}
-            >
-              <IconButton
-                color="info"
-                component="span"
-                onClick={handleFinishSetup}
+              SETUP YOUR PROFILE
+            </Typography>
+            <form>
+              <FormControl
+                label="wow"
+                variant="outlined"
+                margin="dense"
+                fullWidth={true}
               >
-                <AppRegistrationTwoTone />
-              </IconButton>
-            </FormControl>
-          </form>
-        </Box>
-      </Modal>
-    </>)
+                <InputLabel htmlFor="displayName" color="success">
+                  {" "}
+                  DISPLAY NAME{" "}
+                </InputLabel>
+                <Input
+                  inputRef={displayNameRef}
+                  aria-describedby="displayName"
+                />
+              </FormControl>
+
+              <FormControl
+                label="img"
+                variant="outlined"
+                margin="normal"
+                fullWidth={true}
+              >
+                <label htmlFor="icon-button-file">
+                  <Input
+                    accept="image/*"
+                    id="icon-button-file"
+                    aria-describedby="profilePicture"
+                    type="file"
+                    onChange={handleFileUpload}
+                  />
+                  <IconButton
+                    color="success"
+                    aria-label="upload picture"
+                    component="span"
+                  >
+                    <PhotoCamera />
+                  </IconButton>
+                </label>
+              </FormControl>
+              <FormControl
+                label="wow"
+                variant="outlined"
+                margin="dense"
+                fullWidth={true}
+              >
+                <TextField
+                  id="aboutMe"
+                  multiline={true}
+                  rows="5"
+                  sx={{ color: "white" }}
+                  inputRef={aboutMeRef}
+                  InputLabelProps={{ "aria-describedBy": "aboutMe" }}
+                />
+              </FormControl>
+
+              <FormControl
+                label="wow"
+                variant="outlined"
+                margin="normal"
+                fullWidth={true}
+              >
+                <IconButton
+                  color="info"
+                  component="span"
+                  onClick={handleFinishSetup}
+                >
+                  <AppRegistrationTwoTone />
+                </IconButton>
+              </FormControl>
+            </form>
+          </Box>
+        </Modal>
+      </>
+    )
+  );
 }
 export default ProfileSetup;

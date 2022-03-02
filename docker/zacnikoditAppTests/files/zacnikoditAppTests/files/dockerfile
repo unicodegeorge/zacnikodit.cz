@@ -1,0 +1,10 @@
+FROM openjdk:11
+ARG UID
+ARG LESSONID
+COPY . /zacnikoditAppTests/${UID}/${LESSONID}/files
+WORKDIR /zacnikoditAppTests/${UID}/${LESSONID}/files
+RUN touch output.txt
+RUN javac Dong.java
+RUN java Dong
+
+

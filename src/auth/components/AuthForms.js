@@ -1,8 +1,10 @@
-import { auth, database } from "../../firebase/firebase-config";
+import { auth, database, googleAuth, provider } from "../../firebase/firebase-config";
 import { signUp, signIn } from '../../firebase/firebase-config';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setDoc, doc } from "firebase/firestore";
+import { Button } from "@mui/material";
+import { signInWithPopup } from "@firebase/auth";
 
 
 
@@ -10,6 +12,7 @@ function AuthForms(props) {
 
     const [email, setEmail] = useState();
     const [passWord, setPassWord] = useState();
+
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -55,13 +58,36 @@ function AuthForms(props) {
         
     }
 
-    const handleClick = () => {
+    const handleGoogleLogin = async () => {
+        await signInWithPopup(auth, provider);
+        if (props.type === 'signup') {
+             setDoc(doc(database, "users", auth.currentUser.uid), {
+              setupDone: false,
+            });
+          }
+    }
+
+    const handleClick = (event) => {
+        console.log(event);
         switch (props.type) {
             case 'signup':
-                handleSignUp();
+                switch(event.target.id) {
+                    case 'signInWithGoogle':
+                        handleGoogleLogin();
+                        break;
+                    default:
+                        handleSignUp();
+                        break;
+                }
                 break;
             case 'login':
-                handleLogIn();
+                switch(event.target.id) {
+                    case 'signInWithGoogle':
+                        handleGoogleLogin();
+                        break;
+                    default:
+                        handleLogIn();
+                }
                 break;
             default:
                 alert('wront type');
@@ -80,6 +106,10 @@ function AuthForms(props) {
                     <input onChange={handleInputChange} type="password" />
                     <input className="form-btn" type="submit" value={props.type === "signup" ? "SIGN UP" : "LOG IN"} onClick={handleClick} />
                 </div>
+
+                <h4>Or</h4>
+                
+                <Button id={"signInWithGoogle"} onClick={handleClick} variant={"outlined"}> Sign in with Google </Button>
             
             
         </div>

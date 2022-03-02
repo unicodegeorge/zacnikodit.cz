@@ -1,5 +1,6 @@
 import "./HomeStyle.css";
 import React, {useEffect} from "react"
+import ChatScreen from "../../screens/ChatScreen";
 function HomeComponent() {
     function rainbow(str) {
         var multiplier = 5;
@@ -24,6 +25,7 @@ function HomeComponent() {
     }, [])
   return (
     <div className="home">
+      <ChatScreen />
       <h1 style={{ color: "white", textDecoration: "3px solid white underline", width: 300, marginLeft: 30, paddingBottom: 10}}>Hej ty!</h1>
       <p
         style={{

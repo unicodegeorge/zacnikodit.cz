@@ -9,16 +9,18 @@ function LessonComponent(props) {
     const [loading, toggleLoading] = useState(false);
 
     useEffect(() => {
-      toggleLoading(true);
     }, []);
 
     const lessonDoc = `// Welcome to class - ${lesson?.lessonTitle}`;
 
 
+
     return (
-        <div>
+        <div className="LessonDiv">
+            <div id="ide">
            {loading && <CircularProgress sx={{position: "absolute", left: '50%', top: '50%'}} color="success" thickness="10"/>}
             {!loading && <PlayGroundComponent doc={lessonDoc}/>}
+            </div>
         </div>
     )
 }

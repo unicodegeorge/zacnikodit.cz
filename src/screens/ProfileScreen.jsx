@@ -7,20 +7,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 function ProfileScreen(props) {
     const [profileSetupDone, setProfileSetupDone] = useState(undefined);
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     useEffect(() =>{
         if(user) {
             const asyncSetProfileSetupDone = async () => {
                 const setupDone = await isProfileSetupDone(user.uid);
-               
                 setProfileSetupDone(setupDone);
+                console.log(setupDone);
             }
-            console.log(profileSetupDone)
             asyncSetProfileSetupDone();
-
+            console.log(profileSetupDone)
         }
-    });
+    }, [user]);
   
     return (
         <div>
