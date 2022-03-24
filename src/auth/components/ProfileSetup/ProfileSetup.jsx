@@ -91,12 +91,7 @@ function ProfileSetup(props) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <Typography
-              gutterBottom={true}
-              id="modal-modal-title"
-              variant="h4"
-              component="h2"
-            >
+            <Typography gutterBottom={true} id="modal-modal-title" variant="h4"component="h2" >
               SETUP YOUR PROFILE
             </Typography>
             <form>

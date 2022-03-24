@@ -23,7 +23,6 @@ function ProfileScreen(props) {
   
     return (
         <div>
-                 
                  {profileSetupDone === false || undefined? <ProfileSetup setProfileSetupDone={setProfileSetupDone}/> :<h3>WHY</h3> && <ProfileBoard />}
           
         </div>

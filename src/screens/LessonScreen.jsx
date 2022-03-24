@@ -1,4 +1,5 @@
 import { useParams } from "react-router";
+import FirstPart from "../components/lesson/FirstPart";
 import LessonComponent from "../components/LessonComponent";
 
 function LessonScreen() {
@@ -7,8 +8,7 @@ function LessonScreen() {
     console.log(lessonId);
     return (
         <div className="lesson-container">
-            
-            <LessonComponent lessonId={lessonId} />
+            <LessonComponent />
         </div>
     )
 }

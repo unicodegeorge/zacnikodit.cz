@@ -58,9 +58,12 @@ function AuthForms(props) {
         
     }
 
+
+
     const handleGoogleLogin = async () => {
         await signInWithPopup(auth, provider);
         if (props.type === 'signup') {
+
              setDoc(doc(database, "users", auth.currentUser.uid), {
               setupDone: false,
             });
